@@ -2,13 +2,16 @@ package com.example.demo.Controller;
 
 import com.example.demo.data.TaskMapper;
 import com.example.demo.util.DataSourceContextHolder;
+import io.netty.util.concurrent.CompleteFuture;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class TaskController {
@@ -52,6 +55,11 @@ public class TaskController {
         }
         DataSourceContextHolder.clear();
         return res;
+    }
+
+    @Async
+    public CompletableFuture<Boolean> preLabel(int datasetId, int taskId, int batchNum){
+        return CompletableFuture.completedFuture(Boolean.TRUE);
     }
 
 

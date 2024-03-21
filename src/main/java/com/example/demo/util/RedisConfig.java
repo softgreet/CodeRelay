@@ -21,9 +21,8 @@ public class RedisConfig {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofDays(1))//设置缓存过期时间
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));   //设置序列化器
-        RedisCacheManager build = RedisCacheManager.builder(lettuceConnectionFactory)
+        return RedisCacheManager.builder(lettuceConnectionFactory)
                 .cacheDefaults(config)
                 .build();
-        return build;
     }
 }
